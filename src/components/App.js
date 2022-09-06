@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
-import Token from '../artifacts/contracts/Token.sol/Token.json'
 import config from '../config.json'
-import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { 
   loadProvider, 

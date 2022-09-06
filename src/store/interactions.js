@@ -1,5 +1,4 @@
 import { ethers } from 'ethers'
-import Token from '../artifacts/contracts/Token.sol/Token.json'
 import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json'
 
 

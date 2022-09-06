@@ -1,6 +1,4 @@
 import { ethers } from 'ethers'
-import Exchange from '../artifacts/contracts/Exchange.sol/Exchange.json'
-
 
 export const loadProvider =(dispatch) => {
 	const connection = new ethers.providers.Web3Provider(window.ethereum)

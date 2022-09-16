@@ -8,8 +8,12 @@ import arrowUp from '../assets/up-arrow.svg'
 
 const PriceChart = () => {
 
+  //On line 40, replace all code in curly braces with variable series for chart demenstration
+
+  //Variables pulled from Redux store
   const account = useSelector(state => state.provider.account)
   const symbols = useSelector(state => state.tokens.symbols)
+  
   const priceChart = useSelector(priceChartSelector)
 
   return (

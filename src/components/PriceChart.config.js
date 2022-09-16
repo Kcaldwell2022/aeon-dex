@@ -1,3 +1,4 @@
+//Copied from Apex chart documentation, I think it works right?
 export const options = {
   chart: {
     animations: { enabled: true },

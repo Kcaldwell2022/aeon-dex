@@ -1,3 +1,4 @@
+//Reducer actions are triggered when useDispatch from react-redux is called
 export const provider = (state = {}, action) => {
 	switch (action.type) {
 		case 'PROVIDER_LOADED':

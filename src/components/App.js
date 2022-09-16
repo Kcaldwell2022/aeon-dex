@@ -51,6 +51,7 @@ function App() {
     subscribeToEvents(exchange, dispatch)
   }
 
+  //Calls loadBlockchainData after render
   useEffect(() => {
     loadBlockchainData()
   })

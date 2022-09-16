@@ -6,18 +6,25 @@ import { myEventsSelector } from '../store/selectors';
 import config from '../config.json';
 
 const Alert = () => {
-  const alertRef = useRef(null)
 
+  //Ref for alert dialog
+  const alertRef = useRef(null)
+  
+  //Variables pulled from Redux store
   const network = useSelector(state => state.provider.network)
   const account = useSelector(state => state.provider.account)
   const isPending = useSelector(state => state.exchange.transaction.isPending)
   const isError = useSelector(state => state.exchange.transaction.isError)
+  
+  //Gets users events 
   const events = useSelector(myEventsSelector)
-
+  
+  //Makes alert disappear on click
   const removeHandler = async (e) => {
     alertRef.current.className = 'alert--remove'
   }
 
+  //Makes alert visible one of the following variables exist, different text is rendered depending on which variable exists
   useEffect(() => {
     if((events[0] || isPending || isError) && account) {
       alertRef.current.className = 'alert'

@@ -4,19 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const Order = () => {
 
+  //If true, buyHandler is called on submit, else sellHandler is called
   const [isBuy, setIsBuy] = useState(true)
+
+  //Input values for order creation
   const [amount, setAmount] = useState(0)
   const [price, setPrice] = useState(0)
 
+  //Variables pulled from Redux store
   const provider = useSelector(state => state.provider.connection)
   const tokens = useSelector(state => state.tokens.contracts)
   const exchange = useSelector(state => state.exchange.contract)
 
   const dispatch = useDispatch()
 
+  //Refs for buttons on line 59/69
   const buyRef = useRef(null)
   const sellRef = useRef(null)
 
+  //Changes button styling and determines if buyHandler or sellHandler is called on submit
   const tabHandler = (e) => {
     if(e.target.className !== buyRef.current.className) {
       e.target.className = 'tab tab--active'
@@ -29,6 +35,7 @@ const Order = () => {
     }
   }
 
+  //Passes variables and calls makeBuyOrder function
   const buyHandler = (e) => {
     e.preventDefault()
     makeBuyOrder(provider, exchange, tokens, { amount, price }, dispatch)
@@ -37,6 +44,7 @@ const Order = () => {
     setPrice(0)
   }
 
+  //Passes variables and calls makeSellOrder function
   const sellHandler = (e) => {
     e.preventDefault()
     makeSellOrder(provider, exchange, tokens, { amount, price }, dispatch)

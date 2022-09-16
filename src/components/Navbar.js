@@ -6,17 +6,18 @@ import { loadAccount } from '../store/interactions'
 import config from '../config.json'
 
 const Navbar = () => {
+  //Variables pulled from Redux store
   const account = useSelector(state => state.provider.account)
   const chainId = useSelector(state => state.provider.chainId)
   const balance = useSelector(state => state.provider.balance)
   const provider = useSelector(state => state.provider.connection)
 
   const dispatch = useDispatch()
-
+  //Adds account and balance to redux store
   const connectHandler = async () => {
   	await loadAccount(provider, dispatch)
   }
-
+  //Request chain swap from Metamask
   const networkHandler = async (e) => {
     console.log(e.target.value)
     await window.ethereum.request({

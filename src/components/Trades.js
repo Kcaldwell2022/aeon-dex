@@ -5,6 +5,8 @@ import Banner from './Banner'
 
 const Trades = () => {
   const filledOrders = useSelector(filledOrdersSelector)
+
+  //Pulled from Redux store
   const symbols = useSelector(state => state.tokens.symbols)
 
 

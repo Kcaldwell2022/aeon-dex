@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { loadTokens } from '../store/interactions'
 
 const Markets = () => {
+  //Variables pulled from redux store
   const chainId = useSelector(state => state.provider.chainId)
   const provider = useSelector(state => state.provider.connection)
 
   const dispatch = useDispatch()
-
+  //Passes token addresses from selected option element values to loadTokens function
   const marketHandler = async (e) => {
     loadTokens(provider, (e.target.value).split(','), dispatch)
   }
@@ -19,8 +20,8 @@ const Markets = () => {
       </div>
         {chainId && config[chainId] ? (
           <select name="markets" id="markets" onChange={marketHandler}>
-          <option value={`${config[chainId].Aeon.address},${config[chainId].mETH.address}`}>Aeon / mETH</option>
-          <option value={`${config[chainId].Aeon.address},${config[chainId].mDAI.address}`}>Aeon / mDAI</option>
+            <option value={`${config[chainId].Aeon.address},${config[chainId].mETH.address}`}>Aeon / mETH</option>
+            <option value={`${config[chainId].Aeon.address},${config[chainId].mDAI.address}`}>Aeon / mDAI</option>
           </select>
         ) : (
           <div>

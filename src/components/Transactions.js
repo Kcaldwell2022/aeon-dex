@@ -8,19 +8,25 @@ import sort from '../assets/sort.svg';
 import Banner from './Banner';
 
 const Transactions = () => {
+  //Determines if My orders/Transactions is displayed
   const [showMyOrders, setShowMyOrders] = useState(true)
 
+  //Variables pulled from Redux store
   const provider = useSelector(state => state.provider.connection)
   const exchange = useSelector(state => state.exchange.contract)
   const symbols = useSelector(state => state.tokens.symbols)
+  
+  //Selectors called from selectors.js
   const myOpenOrders = useSelector(myOpenOrdersSelector)
   const myFilledOrders = useSelector(myFilledOrdersSelector)
 
   const dispatch = useDispatch()
 
+  //Ref for buttons on line 55/56
   const tradeRef = useRef(null)
   const orderRef = useRef(null)
 
+  //Handles button styling, toggles showMyOrders state
   const tabHandler = (e) => {
     if (e.target.className !== orderRef.current.className) {
       e.target.className = 'tab tab--active'
@@ -33,6 +39,7 @@ const Transactions = () => {
     }
   }
 
+  //Calls cancel order function
   const cancelHandler = (order) => {
     cancelOrder(provider, exchange, order, dispatch)
   }

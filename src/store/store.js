@@ -17,3 +17,5 @@ const middleware = [thunk]
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
 
 export default store
+
+//Redux store is initialized with devtools here, all reducers are combined

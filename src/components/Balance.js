@@ -9,10 +9,13 @@ import { useEffect, useState, useRef } from 'react'
 
 const Balance = () => {
 
+  //If true, depositHandler is called on submit, else withdrawHandler is called
   const [isDeposit, setIsDeposit] = useState(true)
+
   const [token1TransferAmount, setToken1TransferAmount] = useState(0)
   const [token2TransferAmount, setToken2TransferAmount] = useState(0)
 
+  //Sets input values as transfer amounts to above^^ React States
   const amountHandler = (e, token) => {
     if (token.address === tokens[0].address) {
       setToken1TransferAmount(e.target.value)
@@ -23,6 +26,7 @@ const Balance = () => {
 
   const dispatch = useDispatch()
 
+  //Variables pulled from Redux store
   const provider = useSelector(state => state.provider.connection)
 
   const exchange = useSelector(state => state.exchange.contract)
@@ -39,9 +43,11 @@ const Balance = () => {
 
   const tokenBalances = useSelector(state => state.tokens.balances)
 
+  //Refs for buttons on line 101/102
   const depositRef = useRef(null)
   const WithdrawRef = useRef(null)
 
+  //Changes button styling and determines if depositHandler or withdrawHandler is called on submit
   const tabHandler = (e) => {
     if(e.target.className !== depositRef.current.className) {
       e.target.className = 'tab tab--active'
@@ -54,6 +60,7 @@ const Balance = () => {
     }
   }
 
+  //Passes variables to transferTokens function
   const depositHandler = (e, token) => {
     e.preventDefault()
 
@@ -66,6 +73,7 @@ const Balance = () => {
     }
   }
 
+  //Passes variables to transferTokens function
   const withdrawHandler = (e, token) => {
     e.preventDefault()
 
@@ -78,6 +86,7 @@ const Balance = () => {
     }
   }
 
+  //Calls loadBalances function and passes variables from Redux store to it, if variables in dependency array change, useEffect refires
   useEffect(() => {
     if(exchange && tokens[0] && tokens[1] && account) {
       loadBalances(exchange, tokens, account, dispatch)
@@ -94,7 +103,7 @@ const Balance = () => {
         </div>
       </div>
 
-      {/* Deposit/Withdraw Component 1 (DApp) */}
+      {/* Deposit/Withdraw Component 1 (Aeon) */}
 
       <div className='exchange__transfers--form'>
         <div className='flex-between'>

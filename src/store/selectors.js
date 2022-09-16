@@ -3,10 +3,11 @@ import { get, groupBy, reject, maxBy, minBy } from 'lodash';
 import moment from 'moment'
 import { ethers } from 'ethers';
 
+//CSS HEX COLOR
 const GREEN = '#25CE8F'
 const RED = '#F45353'
 
-
+// Variables pulled from Redux store with Lodash get
 const account = state => get(state, 'provider.account')
 const tokens = state => get(state, 'tokens.contracts')
 const events = state => get(state, 'exchange.events')
@@ -30,6 +31,7 @@ const openOrders = state => {
 
 }
 
+//Returns events that belong to current account
 export const myEventsSelector = createSelector(
   account,
   events,
@@ -42,6 +44,7 @@ export const myEventsSelector = createSelector(
 // ------------------------------------------------------------------------------
 // MY OPEN ORDERS
 
+//Filter orders for Transactions.js
 export const myOpenOrdersSelector = createSelector(
     account,
     tokens,
@@ -89,13 +92,13 @@ const decorateMyOpenOrder = (order, tokens) => {
 const decorateOrder = (order, tokens) => {
   let token0Amount, token1Amount
 
-  // Note: DApp should be considered token0, mETH is considered token1
-  // Example: Giving mETH in exchange for DApp
+  // Note: Aeon should be considered token0, mETH is considered token1
+  // Example: Giving mETH in exchange for Aeon
   if (order.tokenGive === tokens[1].address) {
-    token0Amount = order.amountGive // The amount of DApp we are giving
+    token0Amount = order.amountGive // The amount of Aeon we are giving
     token1Amount = order.amountGet // The amount of mETH we want...
   } else {
-    token0Amount = order.amountGet // The amount of DApp we want
+    token0Amount = order.amountGet // The amount of Aeon we want
     token1Amount = order.amountGive // The amount of mETH we are giving...
   }
 
@@ -117,6 +120,7 @@ const decorateOrder = (order, tokens) => {
 // ------------------------------------------------------------------------------
 // ALL FILLED ORDERS
 
+//Sorts and styles orders for Trades Component
 export const filledOrdersSelector = createSelector(
   filledOrders,
   tokens,
@@ -236,6 +240,7 @@ const decorateMyFilledOrder = (order, account, tokens) => {
 // ------------------------------------------------------------------------------
 // ORDER BOOK
 
+//
 export const orderBookSelector = createSelector(
   openOrders,
   tokens,
